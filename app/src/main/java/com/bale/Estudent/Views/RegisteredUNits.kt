@@ -7,19 +7,15 @@ import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bale.Estudent.Adpaters.AllUnitsAdapt
-import com.bale.Estudent.Adpaters.UnitAdapter
 import com.bale.Estudent.Models.JoinedEntries
-import com.bale.Estudent.Models.Unit
 import com.bale.Estudent.Models.lecturerUnitEntry
 import com.bale.Estudent.databinding.ActivityRegisteredUnitsBinding
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObjects
 import com.google.firebase.ktx.Firebase
 
-
+/*This class displays all units registered by this student*/
 @Suppress("DEPRECATION")
 class RegisteredUNits : AppCompatActivity() {
     val db = Firebase.firestore

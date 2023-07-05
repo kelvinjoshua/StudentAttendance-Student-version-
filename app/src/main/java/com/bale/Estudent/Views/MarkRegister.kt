@@ -16,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+/*This activity enables a student mark their attendance based on the provided session code*/
 class MarkRegister : AppCompatActivity() {
     lateinit var b:ActivityMarkRegisterBinding
     private val db = Firebase.firestore
@@ -83,22 +84,23 @@ class MarkRegister : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun passToken(s: Session) {
         val timeFormat =  DateTimeFormatter.ofPattern("HH:mm")
-        val currTime = LocalDateTime.now().format(timeFormat)
+        val currentTime = LocalDateTime.now().format(timeFormat)
 
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        currentDay = LocalDateTime.now().format(formatter)
+        val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        currentDay = LocalDateTime.now().format(dateFormat)
 
-        val stime = s.expiry_Time
+        val sessionExpirytime = s.expiry_Time
         val delimiter = ":"
-        val timeArray = stime!!.split(delimiter)
+        val timeArray = sessionExpirytime!!.split(delimiter)
         val hourElement = timeArray[0].toInt()
         val minuteElement = timeArray[1].toInt()
 
-        val currTimeArray = currTime!!.split(delimiter)
-        val currhourElement = currTimeArray[0].toInt()
-        val currminuteElement = currTimeArray[1].toInt()
+        val currTimeArray = currentTime!!.split(delimiter)
+        val currenthourElement = currTimeArray[0].toInt()
+        val currentminuteElement = currTimeArray[1].toInt()
+        /*This function ensures that the current time while marking the register is within the session expiry time,if not marking will not be available*/
 
-        if (currhourElement <= hourElement && currminuteElement<= minuteElement){
+        if (currenthourElement <= hourElement && currentminuteElement<= minuteElement){
             b.markPresent.visibility = View.VISIBLE
         }
         else {
@@ -106,11 +108,9 @@ class MarkRegister : AppCompatActivity() {
         }
 
 
-        //val d = currTime as LocalDateTime
-        //Toast.makeText(this,d.toString(),Toast.LENGTH_SHORT).show()
-
     }
 
+    /*THis function gets all tokens created by lecturers*/
     private fun getAllsessionCodes() {
         db.collection(SESSION_COLLECTION).get().addOnSuccessListener {
             result ->

@@ -1,5 +1,6 @@
 package com.bale.Estudent.Models
 
+/*Ignore this class*/
 data class lecturerUnitEntry(
     val lecturer:String? = null,
     val unit_code:String? = null,

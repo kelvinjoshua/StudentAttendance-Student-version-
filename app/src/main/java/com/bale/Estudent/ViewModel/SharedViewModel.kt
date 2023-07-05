@@ -10,14 +10,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
-
+/*Ignore this class*/
 class SharedViewModel: ViewModel(){
     val db = Firebase.firestore
     val allUnits = MutableLiveData<MutableList<lecturerUnitEntry>>()
    // val all:MutableList<lecturerUnitEntry>() = null
-
-
-
 
     fun getAllAvailableUnits(co:String,ca:String,ms:String){
         viewModelScope.launch {

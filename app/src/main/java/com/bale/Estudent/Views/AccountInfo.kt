@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.bale.Estudent.R
 import com.bale.Estudent.databinding.ActivityAccountInfoBinding
 
+/*This activity displays and obtains the student's details*/
 class AccountInfo : AppCompatActivity() {
     private lateinit var binding:ActivityAccountInfoBinding
     private var campus:String? = null
@@ -19,13 +20,11 @@ class AccountInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAccountInfoBinding.inflate(layoutInflater)
-        val accountPreference = getSharedPreferences(PREFERENCE_FILE_NAME, MODE_PRIVATE)
-        //Toast.makeText(this,accountPreference.getString(STUDENT_NAME,""),Toast.LENGTH_SHORT).show()
+        getSharedPreferences(PREFERENCE_FILE_NAME, MODE_PRIVATE)
         setContentView(binding.root)
         checkUser()
-        binding.save.setOnClickListener {
-           // Toast.makeText(applicationContext,"All fields required",Toast.LENGTH_LONG).show()
 
+        binding.save.setOnClickListener {
             saveToPreferences()
         }
 
@@ -74,13 +73,14 @@ class AccountInfo : AppCompatActivity() {
         }
     }
 
+    /*This function checks if a student's detials have been previously created and saved*/
     private fun checkUser() {
         val accountPreference = getSharedPreferences(PREFERENCE_FILE_NAME, MODE_PRIVATE)
-
         if(accountPreference.getString(STUDENT_NAME,"").isNullOrEmpty()) binding.AccountCard.visibility = View.VISIBLE
         else displaySavedDetails()
     }
 
+    /*This function saves the Student's details based on the fields provided*/
     private fun saveToPreferences() {
 
         val stdn = binding.stdn.text.toString()
@@ -108,6 +108,7 @@ class AccountInfo : AppCompatActivity() {
 
     }
 
+    /*This function displays saved details on thus student*/
     private fun displaySavedDetails() {
         val accountPreference = getSharedPreferences(PREFERENCE_FILE_NAME, MODE_PRIVATE)
 

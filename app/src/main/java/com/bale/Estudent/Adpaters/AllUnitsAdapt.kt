@@ -8,12 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bale.Estudent.Models.JoinedEntries
 import com.bale.Estudent.R
 import com.bale.Estudent.Views.MarkRegister
-import com.bale.Estudent.Views.ValidateCode
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.ktx.toObject
 
+/*This is the class in use, ignore other classes in the Adpaters package*/
 class AllUnitsAdapt(val ls: List<JoinedEntries>):RecyclerView.Adapter<AllUnitsAdapt.ItemViewHolder>() {
     class ItemViewHolder( val view: View): RecyclerView.ViewHolder(view){
         val unitName: MaterialTextView = view.findViewById(R.id.unitName)
